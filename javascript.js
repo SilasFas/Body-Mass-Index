@@ -14,11 +14,29 @@ window.document.getElementById('calculate').onclick = function () {
     let weightNumber = Number(weight)
 
     // In this part, I am using the BMI formula 
-    let BMI = weightNumber / (heightNumber * heightNumber)
-    let convert = BMI * 10000
+    let convert = weightNumber / Math.pow(heightNumber, 2)
+    let BMI = convert * 10000
 
-    // This part is my output. I am showing the result of my input and calculations  
-    window.document.getElementById('result').innerHTML = `Your BMI is ${convert.toFixed(1)}`
+    if (BMI < 18.5) {
+        // This part is my output. I am showing the result of my input and calculations  
+        window.document.getElementById('result').innerHTML = `Your BMI is ${BMI.toFixed(1)}. <br> You are underweight`
+
+    } else if (BMI >= 18.5 && BMI < 25) {
+        // This part is my output. I am showing the result of my input and calculations  
+        window.document.getElementById('result').innerHTML = `Your BMI is ${BMI.toFixed(1)}. <br> You are in your normal weight`
+
+    } else if (BMI >= 25 && BMI < 30) {
+        // This part is my output. I am showing the result of my input and calculations 
+        window.document.getElementById('result').innerHTML = `Your BMI is ${BMI.toFixed(1)} <br> You are overwight`
+
+    } else if (BMI >= 30 && BMI < 35) {
+        // This part is my output. I am showing the result of my input and calculations 
+        window.document.getElementById('result').innerHTML = `Your BMI is ${BMI.toFixed(1)} <br> You are obese`
+
+    } else {
+        // This part is my output. I am showing the result of my input and calculations 
+        window.document.getElementById('result').innerHTML = `Your BMI is ${BMI.toFixed(1)} <br> You are extreme obese`
+    }
 }
 
 // In this part, I am using the 'onfocus' so that the user doesn't need to erase the first value to calculate another one. That's the height value.    
